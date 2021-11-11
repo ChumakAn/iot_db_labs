@@ -1,7 +1,7 @@
  CREATE DATABASE IF NOT EXISTS pharmacy_db;
  USE pharmacy_db;
  
- DROP TABLE IF EXISTS pharmacy_has_medicine;
+ DROP TABLE IF EXISTS pharmaсy_has_medicine;
  DROP TABLE IF EXISTS medicine_zone;
  DROP TABLE IF EXISTS pharmacy;
  DROP TABLE IF EXISTS medicine_list;
@@ -78,7 +78,7 @@ CREATE TABLE medicine_list (
 CREATE TABLE pharmacy (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
-  street VARCHAR(45) NOT NULL,
+  street_id VARCHAR(45) NOT NULL,
   building_number INT NOT NULL,
   web_adress VARCHAR(45) NULL,
   work_time_open TIME NOT NULL,

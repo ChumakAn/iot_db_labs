@@ -1,6 +1,7 @@
 
 USE pharmacy_db;
 
+SET GLOBAL log_bin_trust_function_creators = 1;
 
 -- №1: для employee шукати AVG стовпця experience
 
@@ -9,10 +10,7 @@ DELIMITER //
 CREATE FUNCTION get_average_experience()
 RETURNS DECIMAL(10,1) 
 BEGIN
-return(
-SELECT AVG(experience)
-FROM employee
-);
+return(SELECT AVG(experience) FROM employee);
 END //	
 DELIMITER ;
 
@@ -25,10 +23,12 @@ post_id INT
 RETURNS VARCHAR(25)
 BEGIN	
 RETURN(
-	SELECT post.name
-    FROM employee
-    LEFT JOIN post on employee.post_id = post.id
-    WHERE employee.id = post_id
+	select name from post where id =(select post_id from employee where id = post_id)
 );
 END //
 DELIMITER ;
+
+
+-- вибірка даних 
+-- SELECT * from employee where experience > get_average_experience();
+-- SELECT name, surname, middle_name, identity_number, passport_data, experience, birth_date, get_post_name(id) from employee;
